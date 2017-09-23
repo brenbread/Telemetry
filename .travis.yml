@@ -1,14 +1,11 @@
-sudo: true
-
 language: python
-
 matrix:
     include:
         - os: linux
-          sudo: required
+          sudo: true
           dist: trusty
           group: edge
-          before_install: apt install python-pip
+          before_install: sudo apt install python-pip
         - os: osx
 install:
   - pip install virtualenv
