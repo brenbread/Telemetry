@@ -11,7 +11,7 @@ matrix:
         - os: osx
 
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "trusty" ]]; apt install python-pip ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "trusty" ]]; then apt install python-pip ; fi
   - pip install virtualenv
   - ./setup
 script:
