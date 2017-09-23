@@ -1,8 +1,15 @@
 sudo: true
-dist:
-  - trusty
-  - osx
-group: edge
+
+language: python
+
+matrix:
+    include:
+        - os: linux
+          sudo: required
+          dist: trusty
+          group: edge
+        - os: osx
+
 install:
   - if [[ "$TRAVIS_OS_NAME" == "trusty" ]]; apt install python-pip ; fi
   - pip install virtualenv
