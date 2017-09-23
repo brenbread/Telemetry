@@ -8,10 +8,9 @@ matrix:
           sudo: required
           dist: trusty
           group: edge
+          before_install: apt install python-pip
         - os: osx
-
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "trusty" ]]; then apt install python-pip ; fi
   - pip install virtualenv
   - ./setup
 script:
