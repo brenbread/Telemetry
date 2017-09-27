@@ -2,18 +2,25 @@
 matrix:
     include:
         - os: linux
-          language: python
-          python:
-            - "2.7"
-            - "3.6"
           sudo: true
           dist: trusty
           group: edge
-          before_install: sudo apt install python-pip
+          install:
+            - sudo apt install python-pip
+            - pip install virtualenv
+            - ./setup
+        - os: linux
+          sudo: true
+          dist: trusty
+          group: edge
+          install:
+            - sudo apt install python-pip
+            - pip install virtualenv
+            - ./setup-py3
         - os: osx
-install:
-  - pip install virtualenv
-  - ./setup
+          install:
+            - pip install virtualenv
+            - ./setup
 script:
   - ./telemetry &
   - sleep 2
