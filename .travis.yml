@@ -2,13 +2,10 @@
 matrix:
     include:
         - os: linux
-<<<<<<< Updated upstream
-=======
           language: python
           python:
             - "2.7"
             - "3.6"
->>>>>>> Stashed changes
           sudo: true
           dist: trusty
           group: edge
