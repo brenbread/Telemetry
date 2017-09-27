@@ -11,7 +11,6 @@ You need **python 2.x**, **pip** and **virtualenv** installed prior to installat
 
 ## Install Dependencies on Ubuntu
 1. `sudo apt install python python-pip virtualenv`
-2.
 
 ## Install on Mac OSX
 1. Install Python: `brew install python`
@@ -53,6 +52,13 @@ Run the following in the project root: `./telemetry.py`
 
 1. Activate virtual environment: `source modules/bin/activate`
 2. Run the following in the project root: `python Telemetry.py`
+
+# Change Log
+
+## Update 09.27.2017
+
+* Fixed KeyboardInterrupt by removing python thread and putting everything on one thread (main Flask thread).
+* Now works with Python 3
 
 # License
 
