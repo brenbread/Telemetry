@@ -1,4 +1,3 @@
-#language: python
 matrix:
     include:
         - os: linux
@@ -18,11 +17,10 @@ matrix:
             - pip install virtualenv
             - ./setup-py3
         - os: osx
-          install:
+          before_install:
             - pip install virtualenv
             - ./setup
 script:
   - ./telemetry &
   - sleep 2
   - wget http://localhost:5001
-# after_success:
