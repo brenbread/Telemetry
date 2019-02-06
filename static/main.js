@@ -93,6 +93,7 @@ var graph_update_active = false;
 var telemetry_flag      = false;
 var carriage_return_active = false;
 var darktheme_active    = false;
+var dc_focuslost_active = false;
 var newline_active      = true;
 var scrolled_to_bottom  = true;
 /*** Structures ***/
@@ -528,6 +529,38 @@ $("#dark-theme").on('change', function()
     }else{
         var item = document.getElementById("dark-style");
         item.parentNode.removeChild(item);
+    }
+});
+
+$("#dc-on-focus-lost").on('change', function()
+{
+    dc_focuslost_active = $(this).is(":checked");
+    setCache("dc-on-focus-lost", dc_focuslost_active);
+    if(dc_focuslost_active){
+        // enable disconnect on focus lost
+        document.addEventListener("visibilitychange", function() {
+            // console.info("Telemetry currently hidden");
+            if(device_connected && server_connected){
+                $.get(`${URL}/disconnect`, function(data)
+                {
+                    if(data === SUCCESS)
+                    {
+                        device_connected = false;
+                        table_init = false;
+                        telemetry_raw = "\r\n";
+                        $("#connect")
+                            .addClass("btn-outline-success")
+                            .removeClass("btn-outline-danger")
+                            .text("Connect");
+                        $("#serial-baud-select").removeAttr("disabled");
+                        console.info("Device has been disconnected by focus lost");
+                        $('#serial-disconnect-modal').modal('show');
+                    }
+                });
+            }
+          });
+    }else{
+
     }
 });
 
